@@ -1,0 +1,31 @@
+services:
+  mysql:
+    image: mysql:8
+    container_name: estoque_livraria
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: livraria
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user123
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - minha_rede
+      
+  adminer:
+    image: adminer
+    container_name: adminer_novo
+    restart: always
+    ports:
+      - "8081:8080"
+    networks:
+      - minha_rede
+
+volumes:
+  mysql_data:
+
+networks:
+  minha_rede:
